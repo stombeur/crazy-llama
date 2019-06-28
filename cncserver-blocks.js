@@ -154,15 +154,15 @@ class LlamaKun {
       menus: {
         namedGoTo: {
           acceptReporters: true,
-          items: 'getNamedGotMenu'
+          items: 'getNamedGotoMenu'
         }
       }
     };
   }
 
-  getNamedGotMenu () {
+  getNamedGotoMenu () {
     return ['top', 'bottom', 'left', 'right', 'center'];
-}
+  }
 
   penUp() {
     return this.fetchUrl('pen.up');
