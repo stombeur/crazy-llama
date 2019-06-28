@@ -30,10 +30,70 @@ class LlamaKun {
 
           text: 'Pen Down',
          // arguments: {}
-        }
+        },
+        {
+            opcode: 'moveSpeed',
+  
+            blockType: Scratch.BlockType.COMMAND,
+  
+            text: 'Set move speed to [SPEED]',
+            arguments: {
+                SPEED: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 5
+                }
+            }
+          }, 
+        {
+            opcode: 'goTo',
+  
+            blockType: Scratch.BlockType.COMMAND,
+  
+            text: 'Go to [X] [Y]',
+            arguments: {
+                X: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0
+                },
+                Y: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0
+                }
+            }
+          },
+          {
+            opcode: 'moveToward',
+  
+            blockType: Scratch.BlockType.COMMAND,
+  
+            text: 'Move Toward [X] [Y]',
+            arguments: {
+                X: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0
+                },
+                Y: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0
+                }
+            }
+          },
+          {
+            opcode: 'moveForward',
+  
+            blockType: Scratch.BlockType.COMMAND,
+  
+            text: 'Move Forward [AMOUNT]',
+            arguments: {
+                AMOUNT: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0
+                }
+            }
+          }
       ]
     }
-  }
+}
 
   penUp() {
     return this.fetchUrl('pen.up');
@@ -41,6 +101,26 @@ class LlamaKun {
 
   penDown() {
     return this.fetchUrl('pen.down');
+  }
+
+  moveSpeed({SPEED}) {
+    return this.fetchUrl('move.speed/' + SPEED);
+  }
+
+  goTo({X,Y}) {
+      return this.fetchUrl('coord/'+ X + '/' + Y);
+  }
+
+  moveToward({X,Y}) {
+    return this.fetchUrl('move.toward/'+ X + '/' + Y);
+  }
+
+  moveForward({AMOUNT}) {
+    return this.fetchUrl('move.forward/'+ AMOUNT);
+  }
+
+  goToNamed({X,Y}) {
+    return this.fetchUrl('coord/'+ X + '/' + Y);
   }
 
   fetchUrl(command, host) {
