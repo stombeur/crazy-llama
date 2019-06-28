@@ -90,6 +90,20 @@ class LlamaKun {
               defaultValue: 0
             }
           }
+        }
+        ,
+        {
+          opcode: 'turn',
+
+          blockType: Scratch.BlockType.COMMAND,
+
+          text: 'Turn [ANGLE] degrees',
+          arguments: {
+            ANGLE: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 90
+            }
+          }
         },
         {
           opcode: 'goToNamed',
@@ -100,10 +114,12 @@ class LlamaKun {
           arguments: {
             NAME1: {
               type: Scratch.ArgumentType.STRING,
+              menu: 'namedGoTo',
               defaultValue: 'top'
             },
             NAME2: {
               type: Scratch.ArgumentType.STRING,
+              menu: 'namedGoTo',
               defaultValue: 'left'
             }
           }
@@ -111,28 +127,8 @@ class LlamaKun {
       ],
       menus: {
         namedGoTo: {
-          items: [
-            {
-              text: 'top',
-              value: 'top'
-            },
-            {
-              text: 'bottom',
-              value: 'bottom'
-            },
-            {
-              text: 'left',
-              value: 'left'
-            },
-            {
-              text: 'right',
-              value: 'right'
-            },
-            {
-              text: 'center',
-              value: 'center'
-            }
-          ]
+          acceptReporters: true,
+          items: ['top', 'bottom', 'left', 'right', 'center']
         }
       }
     };
@@ -166,6 +162,10 @@ class LlamaKun {
     return this.fetchUrl('coord/' + NAME1 + '/' + NAME2);
   }
 
+  turn({ANGLE}) {
+    return this.fetchUrl('move.absturn/' + ANGLE);    
+  }
+
   fetchUrl(command, host) {
     let fetchme = host ? host + command : 'http://localhost:4242/' + command;
     return new Promise(resolve => {
@@ -176,36 +176,6 @@ class LlamaKun {
     });
   }
 
-  parseJSON({ PATH, JSON_STRING }) {
-    try {
-      const path = PATH.toString()
-        .split('/')
-        .map(prop => decodeURIComponent(prop));
-      if (path[0] === '') path.splice(0, 1);
-      if (path[path.length - 1] === '') path.splice(-1, 1);
-      let json;
-      try {
-        json = JSON.parse(' ' + JSON_STRING);
-      } catch (e) {
-        return e.message;
-      }
-      path.forEach(prop => (json = json[prop]));
-      if (json === null) return 'null';
-      else if (json === undefined) return '';
-      else if (typeof json === 'object') return JSON.stringify(json);
-      else return json.toString();
-    } catch (err) {
-      return '';
-    }
-  }
-
-  stringToBoolean({ STRING }) {
-    return STRING;
-  }
-
-  regexReplace({ STRING, REGEX, NEWSTRING }) {
-    return STRING.toString().replace(new RegExp(REGEX, 'gi'), NEWSTRING);
-  }
 }
 
 Scratch.extensions.register(new LlamaKun());
