@@ -149,10 +149,18 @@ class LlamaKun {
               defaultValue: 'left'
             }
           }
+        },
+        {
+          opcode: 'report',
+
+          blockType: Scratch.BlockType.REPORTER,
+
+          text: 'Get debug data'
         }
       ],
       menus: {
-        NAMED_GOTO: [{text: 'top', value: 'top'},{text: 'bottom', value: 'bottom'},{text: 'left', value: 'left'},{text: 'right', value: 'right'},{text: 'center', value: 'center'}]
+        NAMED_GOTO: [{text: 'top', value: 'top'},{text: 'bottom', value: 'bottom'},{text: 'left', value: 'left'},{text: 'right', value: 'right'},{text: 'center', value: 'center'}],
+        DEGREES: ['0', '90', '180', '270', '360']
       }
     };
   }
@@ -196,12 +204,25 @@ class LlamaKun {
     return this.fetchUrl('move.right/' + ANGLE);    
   }
 
+  report() {
+    return this.fetchUrlData('poll');
+  }
+
   fetchUrl(command, host) {
     let fetchme = host ? host + command : 'http://localhost:4242/' + command;
     return new Promise(resolve => {
       fetch(fetchme)
         .then(res => res.text())
         .then(resolve)
+        .catch(err => resolve(''));
+    });
+  }
+
+  fetchUrlData(command, host) {
+    let fetchme = host ? host + command : 'http://localhost:4242/' + command;
+    return new Promise(resolve => {
+      fetch(fetchme)
+        .then(res => res.text().then(t => resolve(t)))
         .catch(err => resolve(''));
     });
   }
