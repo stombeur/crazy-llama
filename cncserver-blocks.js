@@ -93,11 +93,37 @@ class LlamaKun {
         }
         ,
         {
-          opcode: 'turn',
+          opcode: 'face',
 
           blockType: Scratch.BlockType.COMMAND,
 
-          text: 'Turn [ANGLE] degrees',
+          text: 'Face [ANGLE] degrees',
+          arguments: {
+            ANGLE: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 90
+            }
+          }
+        },
+        {
+          opcode: 'turnLeft',
+
+          blockType: Scratch.BlockType.COMMAND,
+
+          text: 'Turn LEFT [ANGLE] degrees',
+          arguments: {
+            ANGLE: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 90
+            }
+          }
+        },
+        {
+          opcode: 'turnRight',
+
+          blockType: Scratch.BlockType.COMMAND,
+
+          text: 'Turn RIGHT [ANGLE] degrees',
           arguments: {
             ANGLE: {
               type: Scratch.ArgumentType.NUMBER,
@@ -128,11 +154,15 @@ class LlamaKun {
       menus: {
         namedGoTo: {
           acceptReporters: true,
-          items: ['top', 'bottom', 'left', 'right', 'center']
+          items: 'getNamedGotMenu'
         }
       }
     };
   }
+
+  getNamedGotMenu () {
+    return ['top', 'bottom', 'left', 'right', 'center'];
+}
 
   penUp() {
     return this.fetchUrl('pen.up');
@@ -162,8 +192,16 @@ class LlamaKun {
     return this.fetchUrl('coord/' + NAME1 + '/' + NAME2);
   }
 
-  turn({ANGLE}) {
+  face({ANGLE}) {
     return this.fetchUrl('move.absturn/' + ANGLE);    
+  }
+
+  turnLeft({ANGLE}) {
+    return this.fetchUrl('move.left/' + ANGLE);    
+  }
+
+  turnRight({ANGLE}) {
+    return this.fetchUrl('move.right/' + ANGLE);    
   }
 
   fetchUrl(command, host) {
