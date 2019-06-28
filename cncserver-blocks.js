@@ -18,7 +18,7 @@ class LlamaKun {
         {
           opcode: 'penUp',
 
-          blockType: Scratch.BlockType.COMMAND,
+          blockType: Scratch.BlockType.REPORTER,
 
           text: 'Pen up',
           //arguments: {}
@@ -26,7 +26,7 @@ class LlamaKun {
         {
           opcode: 'penDown',
 
-          blockType: Scratch.BlockType.COMMAND,
+          blockType: Scratch.BlockType.REPORTER,
 
           text: 'Pen Down',
          // arguments: {}
