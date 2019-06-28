@@ -140,7 +140,7 @@ class LlamaKun {
           arguments: {
             NAME1: {
               type: Scratch.ArgumentType.STRING,
-              menu: 'namedGoTo',
+              menu: 'NAMED_GOTO',
               defaultValue: 'top'
             },
             NAME2: {
