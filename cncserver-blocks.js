@@ -153,7 +153,6 @@ class LlamaKun {
       ],
       menus: {
         NAMED_GOTO: [{text: 'top', value: 'top'},{text: 'bottom', value: 'bottom'},{text: 'left', value: 'left'},{text: 'right', value: 'right'},{text: 'center', value: 'center'}]
-        }
       }
     };
   }
