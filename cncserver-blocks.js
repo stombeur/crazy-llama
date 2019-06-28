@@ -145,14 +145,14 @@ class LlamaKun {
             },
             NAME2: {
               type: Scratch.ArgumentType.STRING,
-              menu: 'namedGoTo',
+              menu: 'NAMED_GOTO',
               defaultValue: 'left'
             }
           }
         }
       ],
       menus: {
-        'namedGoTo': {
+        NAMED_GOTO: {
           acceptReporters: true,
           items: [{text: 'top', value: 'top'},{text: 'bottom', value: 'bottom'},{text: 'left', value: 'left'},{text: 'right', value: 'right'},{text: 'center', value: 'center'}]
         }
