@@ -154,7 +154,7 @@ class LlamaKun {
       menus: {
         namedGoTo: {
           acceptReporters: true,
-          items: 'getNamedGotoMenu'
+          items: this.getNamedGotoMenu
         }
       }
     };
