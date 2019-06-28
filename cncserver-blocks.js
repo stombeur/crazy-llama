@@ -152,7 +152,7 @@ class LlamaKun {
         }
       ],
       menus: {
-        namedGoTo: {
+        'namedGoTo': {
           acceptReporters: true,
           items: [{text: 'top', value: 'top'},{text: 'bottom', value: 'bottom'},{text: 'left', value: 'left'},{text: 'right', value: 'right'},{text: 'center', value: 'center'}]
         }
