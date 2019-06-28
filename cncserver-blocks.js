@@ -5,8 +5,8 @@ class LlamaKun {
 
   getInfo() {
     return {
-      id: 'crazy-llama',
-      name: 'Crazy-Llama',
+      id: 'crazyllama',
+      name: 'Crazy Llama',
 
       colour: '#FF33CC',
       colourSecondary: '#7CB342',
@@ -18,7 +18,7 @@ class LlamaKun {
         {
           opcode: 'penUp',
 
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: Scratch.BlockType.COMMAND,
 
           text: 'Pen up',
           //arguments: {}
@@ -26,7 +26,7 @@ class LlamaKun {
         {
           opcode: 'penDown',
 
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: Scratch.BlockType.COMMAND,
 
           text: 'Pen Down',
          // arguments: {}
